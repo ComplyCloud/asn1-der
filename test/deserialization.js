@@ -44,7 +44,7 @@ function compare(a, b) {
       const resource = resources[resourceName];
       const serialized = resource[name];
       const expected = resource.object;
-      if (serialized && resourceName === 'rsa_private_key_1024') {
+      if (serialized) {
         it(`should return the expected ASN.1 object model when deserializing ${resourceName}`, function () {
           this.timeout(5000);
           const actual = deserialize(serialized);
