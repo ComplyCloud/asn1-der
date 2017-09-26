@@ -4,8 +4,6 @@ Javascript library for DER and PEM serialization/deserialization of Abstract Syn
 
 Uses the ASN.1 Object Model from [@complycloud/asn1].
 
-*Currently only DER serialization is supported. Deserialization coming soon.*
-
 ## Installation
 
 `npm install @complycloud/asn1-der`
