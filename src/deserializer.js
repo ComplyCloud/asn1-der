@@ -58,8 +58,10 @@ function longContentBytes(buffer, tlvFirstByte) {
   }
   const lengthStartByte = lengthOctetsBytePosition + 1;
   const lengthEndByte = lengthStartByte + (lengthOctets - 1);
-  debug.deserializeBinary('processing %d bytes (bytes %d thru %d) to identify content length',
-  lengthOctets, lengthStartByte, lengthEndByte);
+  debug.deserializeBinary(
+    'processing %d bytes (bytes %d thru %d) to identify content length',
+    lengthOctets, lengthStartByte, lengthEndByte,
+  );
   const length = buffer.readUIntBE(lengthStartByte, lengthOctets);
   debug.deserialize('deserialized content length of %d bytes', length);
   const startByte = lengthEndByte + 1;
@@ -118,15 +120,19 @@ function tlv(buffer, firstByte) {
   if (contentStart != null && contentEnd != null) { // if content is not null, change the aforementioned defaults
     debug.deserializeBinary('isolating content from bytes %d through %d', contentStart, contentEnd);
     if (contentEnd > buffer.length) {
-      throw new IllegalContentError(
-        `too few bytes to read ${contentEnd - contentStart} bytes of ASN.1 content from byte ${contentStart}, ` +
-        `only ${buffer.length} bytes avaliable`,
-      );
+      throw new IllegalContentError(`too few bytes to read ${contentEnd - contentStart} bytes of ASN.1 content from ` +
+        `byte ${contentStart}, only ${buffer.length} bytes avaliable`);
     }
     content = buffer.slice(contentStart, contentEnd + 1);
     lastByte = contentEnd;
   }
-  return { tagClass, encoding, type, content, lastByte };
+  return {
+    tagClass,
+    encoding,
+    type,
+    content,
+    lastByte,
+  };
 }
 
 function decodeOID(buffer) {
@@ -139,9 +145,9 @@ function decodeOID(buffer) {
   while (i < buffer.length) {
     b = buffer[i];
     value <<= 7;
-    if (b & FLAG_LONG) {        // not the last byte for the value
+    if (b & FLAG_LONG) { // not the last byte for the value
       value += b & ~FLAG_LONG;
-    } else {                    // last byte
+    } else { // last byte
       oid += `.${value + b}`;
       value = 0;
     }
@@ -178,7 +184,8 @@ function decode(obj) {
   const TagClass = findTagClass(obj.tagClass);
   const Encoding = findEncoding(obj.encoding);
   const Type = TagClass.name === Universal.name ? findType(obj.type) : null;
-  debug.decode('decoding %s:%s:%s',
+  debug.decode(
+    'decoding %s:%s:%s',
     TagClass ? TagClass.name : 'unknown',
     Encoding ? Encoding.name : 'unknown',
     Type ? Type.name : 'unknown',
@@ -212,8 +219,19 @@ function derDeserialize(buffer, level = 1) {
   let byte = 0;
   const values = [];
   do {
-    const { tagClass, encoding, type, content, lastByte } = tlv(buffer, byte);
-    const value = { tagClass, encoding, type, content };
+    const {
+      tagClass,
+      encoding,
+      type,
+      content,
+      lastByte,
+    } = tlv(buffer, byte);
+    const value = {
+      tagClass,
+      encoding,
+      type,
+      content,
+    };
     if (encoding & FLAG_CONSTRUCTED && type !== Universal.EOC.value) {
       delete value.content;
       value.children = derDeserialize(content, level + 1);
@@ -226,22 +244,18 @@ function derDeserialize(buffer, level = 1) {
 }
 
 export class DERDeserializer extends Deserializer {
-
   deserializationImpl(der) { // eslint-disable-line class-methods-use-this
     validateDER(der);
     const aom = decode(derDeserialize(der));
     return aom;
   }
-
 }
 
 export class PEMDeserializer extends Deserializer {
-
   deserializationImpl(pem) { // eslint-disable-line class-methods-use-this
     validatePEM(pem);
     const der = derFromPEM(pem);
     const aom = decode(derDeserialize(der));
     return aom;
   }
-
 }

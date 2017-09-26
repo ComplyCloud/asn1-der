@@ -14,14 +14,14 @@ const coefficient = new Integer('0x30B41E00FA7C330DA21B03A3ECDFEBD695F53F470BA6D
 
 const rsaPrivateKey = new Sequence([
   version,
-  modulus,            // n
-  publicExponent,     // e
-  privateExponent,    // d
-  prime1,             // p
-  prime2,             // q
-  exponent1,          // d mod (p-1)
-  exponent2,          // d mod (q-1)
-  coefficient,        // (inverse of q) mod p
+  modulus, // n
+  publicExponent, // e
+  privateExponent, // d
+  prime1, // p
+  prime2, // q
+  exponent1, // d mod (p-1)
+  exponent2, // d mod (q-1)
+  coefficient, // (inverse of q) mod p
 ]);
 
 export default rsaPrivateKey;

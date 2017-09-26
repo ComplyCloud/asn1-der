@@ -32,7 +32,7 @@ function compare(a, b) {
     const deserialize = new Deserializer();
 
     /* should throw InvalidContentError if passed null, empty, function, or 0 */
-    [undefined, null, '', [], () => {}, 0, new Buffer(0)].forEach((invalidContent) => {
+    [undefined, null, '', [], () => {}, 0, Buffer.alloc(0)].forEach((invalidContent) => {
       const expectedErr = IllegalContentError;
       it(`should throw ${expectedErr.name} when deserializing ${inspect(invalidContent)}`, function () {
         const deserializeInvalidContent = () => deserialize(invalidContent);

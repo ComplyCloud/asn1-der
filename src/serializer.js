@@ -69,7 +69,7 @@ function bytesToEncodeInt(int) {
 
 function encodeShortInteger(int) {
   const bytes = bytesToEncodeInt(int);
-  const buffer = new Buffer(bytes);
+  const buffer = Buffer.alloc(bytes);
   buffer.writeUIntBE(int, 0, bytes);
   const contentByteArray = Array.prototype.slice.call(buffer, 0);
   return contentByteArray;
@@ -160,16 +160,22 @@ function derSerialize(aom) {
       const buffer = derSerialize.call(this, item);
       values.push(...Array.prototype.slice.call(buffer));
     });
-    return new Buffer(values);
+    return Buffer.from(values);
   }
-  const { type: typeName, tagClass, encoding, content, value: typeValue } = aom;
+  const {
+    type: typeName,
+    tagClass,
+    encoding,
+    content,
+    value: typeValue,
+  } = aom;
   const { type: tagClassName, value: tagClassValue } = tagClass;
   const { type: encodingName, value: encodingValue } = encoding;
 
   debug.serialize(
     'encoding tag as %s:%s:%s (%h:%h:%h)',
     tagClassName, typeName, encodingName, tagClassValue, typeValue, encodingValue,
-    );
+  );
 
   const t = tagClassValue | encodingValue | typeValue;
   const v = encodingName === Constructed.type ? derSerialize.call(this, content) : derEncodeContent(aom);
@@ -178,7 +184,7 @@ function derSerialize(aom) {
   const triplet = [t, ...l];
   if (v != null) triplet.push(...Array.prototype.slice.call(v));
 
-  const serialized = new Buffer(triplet);
+  const serialized = Buffer.from(triplet);
 
   debug.serialize('encoded TLV %h', serialized);
 
@@ -191,19 +197,15 @@ function pemSerialize(der, schema) {
 }
 
 export class DERSerializer extends Serializer {
-
   serializationImpl(aom) {
     return derSerialize.call(this, aom);
   }
-
 }
 
 export class PEMSerializer extends DERSerializer {
-
   serializationImpl(aom, { schema } = {}) {
     const der = derSerialize.call(this, aom);
     const pem = pemSerialize.call(this, der, schema);
     return pem;
   }
-
 }
