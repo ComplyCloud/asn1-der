@@ -1,10 +1,10 @@
 {
-  "name": "@complyify/asn1-der",
-  "version": "0.1.0",
+  "name": "@complycloud/asn1-der",
+  "version": "0.1.2",
   "description": "Javascript library for DER and PEM serialization/deserialization of Abstract Syntax Notation One (ASN.2) object models",
   "main": "dist/index.js",
-  "repository": "git@github.com:complyify/asn1-der.git",
-  "author": "Sean Bruton <sean@complyify.com>",
+  "repository": "git@github.com:complycloud/asn1-der.git",
+  "author": "Sean Bruton <sean@sean.cloud>",
   "license": "MIT",
   "scripts": {
     "check": "yarn lint && yarn test",
@@ -17,18 +17,18 @@
   },
   "devDependencies": {
     "babel-cli": "^6.23.0",
-    "babel-eslint": "^7.1.1",
+    "babel-eslint": "^8.0.0",
     "babel-preset-env": "^1.2.1",
     "babel-register": "^6.23.0",
-    "chai": "^3.5.0",
-    "eslint": "^3.17.1",
-    "eslint-config-airbnb-base": "^11.1.1",
+    "chai": "^4.1.2",
+    "eslint": "^4.7.2",
+    "eslint-config-airbnb-base": "^12.0.0",
     "eslint-plugin-import": "^2.2.0",
     "mocha": "^3.2.0",
     "pre-commit": "^1.2.2"
   },
   "dependencies": {
-    "@complyify/asn1": "^0.3.4",
+    "@complycloud/asn1": "^0.3.6",
     "@complyify/debug": "^1.0.5",
     "node-biginteger": "^0.0.10"
   },

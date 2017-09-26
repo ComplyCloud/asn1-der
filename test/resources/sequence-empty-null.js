@@ -1,4 +1,4 @@
-import { Universal } from '@complyify/asn1';
+import { Universal } from '@complycloud/asn1';
 
 const { Sequence } = Universal;
 
