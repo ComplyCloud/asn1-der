@@ -4,6 +4,7 @@
 /.eslintrc
 
 # test
+/test/
 /coverage/
 
 # npm
