@@ -1,4 +1,4 @@
-import { ContextSpecific, Universal } from '@complyify/asn1';
+import { ContextSpecific, Universal } from '@complycloud/asn1';
 
 const { Sequence, Integer, Set, OID, PrintableString, IA5String, Null, BitString } = Universal;
 

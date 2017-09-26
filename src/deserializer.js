@@ -3,7 +3,7 @@ import {
   Constructed,
   Deserializer,
   Universal,
-} from '@complyify/asn1';
+} from '@complycloud/asn1';
 import Debug from '@complyify/debug';
 import BigInteger from 'node-biginteger';
 
@@ -19,9 +19,9 @@ import {
 } from './constants';
 
 const debug = {
-  decode: new Debug('complyify:asn1:der:deserialize:decode'),
-  deserialize: new Debug('complyify:asn1:der:deserialize'),
-  deserializeBinary: new Debug('complyify:asn1:der:deserialize:binary'),
+  decode: new Debug('complycloud:asn1:der:deserialize:decode'),
+  deserialize: new Debug('complycloud:asn1:der:deserialize'),
+  deserializeBinary: new Debug('complycloud:asn1:der:deserialize:binary'),
 };
 
 function validateDER(der) {

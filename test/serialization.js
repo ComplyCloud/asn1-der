@@ -1,4 +1,4 @@
-import { InvalidASN1ObjectModelError } from '@complyify/asn1';
+import { InvalidASN1ObjectModelError } from '@complycloud/asn1';
 import { expect } from 'chai';
 import { inspect } from 'util';
 

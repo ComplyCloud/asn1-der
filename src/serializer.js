@@ -2,7 +2,7 @@ import {
   Constructed,
   Serializer,
   Universal,
-} from '@complyify/asn1';
+} from '@complycloud/asn1';
 import Debug from '@complyify/debug';
 
 import {
@@ -16,7 +16,7 @@ import {
 } from './constants';
 
 const debug = {
-  serialize: new Debug('complyify:asn1:der:serialize'),
+  serialize: new Debug('complycloud:asn1:der:serialize'),
 };
 
 // TODO revisit this function, hard to follow, from node-forge

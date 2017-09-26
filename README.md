@@ -1,20 +1,20 @@
-# @complyify/asn1-der
+# @complycloud/asn1-der
 
 Javascript library for DER and PEM serialization/deserialization of Abstract Syntax Notation One (ASN.1)
 
-Uses the ASN.1 Object Model from [@complyify/asn1].
+Uses the ASN.1 Object Model from [@complycloud/asn1].
 
 *Currently only DER serialization is supported. Deserialization coming soon.*
 
 ## Installation
 
-`npm install @complyify/asn1-der`
+`npm install @complycloud/asn1-der`
 
 ## Usage
 
 ```javascript
-import { Universal } from '@complyify/asn1';
-import { DERSerializer } from '@complyify/asn1-der';
+import { Universal } from '@complycloud/asn1';
+import { DERSerializer } from '@complycloud/asn1-der';
 import { readFileSync } from 'fs';
 
 // Serialize to DER
@@ -38,8 +38,8 @@ environment variable.
 
 ```shell
 # enable all debugging messages in this library
-DEBUG=complyify:asn1:der:* <your-exec-here>
+DEBUG=complycloud:asn1:der:* <your-exec-here>
 ```
 
-[@complyify/asn1]: https://github.com/complyify/asn1
+[@complycloud/asn1]: https://github.com/complycloud/asn1
 [@complyify/debug]: https://github.com/complyify/debug
