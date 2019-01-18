@@ -120,8 +120,8 @@ function tlv(buffer, firstByte) {
   if (contentStart != null && contentEnd != null) { // if content is not null, change the aforementioned defaults
     debug.deserializeBinary('isolating content from bytes %d through %d', contentStart, contentEnd);
     if (contentEnd > buffer.length) {
-      throw new IllegalContentError(`too few bytes to read ${contentEnd - contentStart} bytes of ASN.1 content from ` +
-        `byte ${contentStart}, only ${buffer.length} bytes avaliable`);
+      throw new IllegalContentError(`too few bytes to read ${contentEnd - contentStart} bytes of ASN.1 content from `
+        + `byte ${contentStart}, only ${buffer.length} bytes avaliable`);
     }
     content = buffer.slice(contentStart, contentEnd + 1);
     lastByte = contentEnd;
