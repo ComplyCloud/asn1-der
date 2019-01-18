@@ -193,7 +193,8 @@ function derSerialize(aom) {
 
 function pemSerialize(der, schema) {
   const pemDer = der.toString('base64').replace(/(.{64})/g, '$1\n');
-  return `-----BEGIN ${schema}-----\n${pemDer}\n-----END ${schema}-----\n`;
+  const optionalTrailingNewline = pemDer[pemDer.length - 1] !== '\n' ? '\n' : ''
+  return `-----BEGIN ${schema}-----` + '\n' + pemDer + optionalTrailingNewline + `-----END ${schema}-----`
 }
 
 export class DERSerializer extends Serializer {
