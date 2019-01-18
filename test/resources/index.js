@@ -12,7 +12,7 @@ const fileProcessors = [
   {
     pattern: /^(.+?)\.pem$/i,
     parameter: 'pem',
-    process: file => readFileSync(file, 'utf8'),
+    process: file => readFileSync(file, 'utf8').trim(),
   },
   {
     pattern: /^(.+?)\.js$/i,
