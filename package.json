@@ -1,35 +1,38 @@
 {
   "name": "@complycloud/asn1-der",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Javascript library for DER and PEM serialization/deserialization of Abstract Syntax Notation One (ASN.2) object models",
   "main": "dist/index.js",
   "repository": "git@github.com:complycloud/asn1-der.git",
   "author": "Sean Bruton <sean@sean.cloud>",
+  "contributors": [
+    "Ian Walton <ian@complyify.com>"
+  ],
   "license": "MIT",
   "scripts": {
-    "check": "yarn lint && yarn test",
+    "check": "npm run lint && npm test",
     "clean": "rm -rf ./dist",
     "compile": "npm run clean && babel src ${WATCH:+--watch} --source-maps inline --out-dir dist",
-    "compile:watch": "WATCH=true yarn compile",
+    "compile:watch": "WATCH=true npm run compile",
     "lint": "eslint src test",
     "test": "mocha ${WATCH:+--watch} ${DEBUGGER:+--inspect --debug-brk} --recursive --compilers js:babel-register",
-    "test:watch": "WATCH=true yarn test"
+    "test:watch": "WATCH=true npm test"
   },
   "devDependencies": {
-    "babel-cli": "^6.23.0",
-    "babel-eslint": "^8.0.0",
-    "babel-preset-env": "^1.2.1",
-    "babel-register": "^6.23.0",
-    "chai": "^4.1.2",
-    "eslint": "^4.7.2",
-    "eslint-config-airbnb-base": "^12.0.0",
-    "eslint-plugin-import": "^2.2.0",
-    "mocha": "^3.2.0",
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^10.0.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "chai": "^4.2.0",
+    "eslint": "^5.12.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "mocha": "^5.2.0",
     "pre-commit": "^1.2.2"
   },
   "dependencies": {
-    "@complycloud/asn1": "^0.3.6",
-    "@complyify/debug": "^1.0.5",
+    "@complycloud/asn1": "^0.3.7",
+    "@complyify/debug": "^1.1.0",
     "node-biginteger": "^0.0.10"
   },
   "pre-commit": [
